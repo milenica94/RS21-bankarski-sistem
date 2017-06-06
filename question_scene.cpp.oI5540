@@ -1,0 +1,215 @@
+#include "question_scene.h"
+#include "ui_question_scene.h"
+
+#include "game.h"
+#include "player.h"
+#include "question.h"
+#include "questionabcd.h"
+#include "rebus.h"
+#include "report_scene.h"
+
+#include <QPixmap>
+#include <QPalette>
+
+static map<int, QString> kategorija = {{1, "igraonica"}, {2, "nauka"}, {3, "umetnost"}, {4, "istorija"}, {5, "igraonica"}};
+
+Question_scene::Question_scene(Player& player, QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::Question_scene)
+{
+    ui->setupUi(this);
+
+    _player = player;
+
+    // Kreira se igra i generisu se sobe po kategorijama
+    Game game;
+
+    QPixmap bkgnd("C:\\Users\\Natalija\\Desktop\\Fakultet\\IV godina\\Razvoj softvera\\projekat\\labirinthGUI3\\question_marks.png");
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Background, bkgnd);
+    this->setPalette(palette);
+
+    ui->player1Label->setText(_player.name());
+
+    ui->player1Label->palette();
+    palette.setColor(ui->player1Label->backgroundRole(), Qt::white);
+    palette.setColor(ui->player1Label->foregroundRole(), Qt::white);
+    ui->player1Label->setPalette(palette);
+
+
+        // nova soba
+
+        Room room(kategorija, 1);
+        _player.setRoomCount(0);
+
+
+      for(auto k = room.questions().begin(); k != room.questions().end(); k++){
+
+        QString pitanje = (*k)->text();
+        pitanje.append("\n");
+        pitanje.append((*k)->correctAnswer());
+        pitanje.append("\n");
+        pitanje.append((*k)->points());
+        pitanje.append("\n");
+
+        for(auto l = room.questions()->offeredAnswers.begin(); l != room.questions()->offeredAnswers.end(); l++){
+            pitanje.append(*l);
+            pitanje.append("\n");
+        }
+
+        ui->question->setText(pitanje);
+      }
+
+      int point = 0;
+
+      /*if(i == 0 || i == 4){
+
+        /*  string answer1 = room1.rebus()[0]->askQuestion(1);
+          string answer2 = room1.rebus()[1]->askQuestion(2);
+          string answer3 = room1.rebus()[2]->askQuestion(3);
+
+          point += room1.rebus()[0]->checkAnswer(answer1);
+          point += room1.rebus()[1]->checkAnswer(answer2);
+          point += room1.rebus()[2]->checkAnswer(answer3);*/
+      //}
+
+     // else{
+
+          ui->rebusAnswer->hide();
+          ui->inputButton->hide();
+          ui->answer3->hide();
+          ui->answer4->hide();
+
+      //    QuestionABCD question1(10, "Koliko je 2+2?", "a", "a) 4", "b) 5", "c) 3");
+
+             // _question = *(game.rooms()[i].questions()[j]);
+
+          //    _question = *(room.questions()[0]);
+              _question = question1;
+          /*    ui->question->setText(_question.askQuestion(1));
+
+              if(_question.offeredAnswers().size() >= 3){
+                  ui->answer3->show();
+              }
+              if(_question.offeredAnswers().size() == 4){
+                  ui->answer4->show();
+              }*/
+
+
+
+
+        // provera da li ide dalje
+   // }
+}
+
+Question_scene::~Question_scene()
+{
+    delete ui;
+}
+
+void Question_scene::on_answer1_clicked()
+{
+    int poeni = _question.checkAnswer(ui->answer1->text());
+
+    _player.setRoomCount(_player.roomCount() + poeni);
+    _player.setTotalCount(_player.totalCount() + poeni);
+
+    if(poeni > 0){
+
+        ui->answer1->setStyleSheet("background-color: rgb(80, 231, 118)");
+    }
+
+    else{
+        ui->answer1->setStyleSheet("background-color: red");
+    }
+
+    ui->answer2->hide();
+    ui->answer3->hide();
+    ui->answer4->hide();
+
+}
+
+void Question_scene::on_answer2_clicked()
+{
+
+    int poeni = _question.checkAnswer(ui->answer2->text());
+
+    _player.setRoomCount(_player.roomCount() + poeni);
+    _player.setTotalCount(_player.totalCount() + poeni);
+
+    if(poeni > 0){
+
+        ui->answer2->setStyleSheet("background-color: green");
+    }
+
+    else{
+        ui->answer2->setStyleSheet("background-color: red");
+    }
+
+    ui->answer1->hide();
+    ui->answer3->hide();
+    ui->answer4->hide();
+}
+
+void Question_scene::on_answer3_clicked()
+{
+    int poeni = _question.checkAnswer(ui->answer3->text());
+
+    _player.setRoomCount(_player.roomCount() + poeni);
+    _player.setTotalCount(_player.totalCount() + poeni);
+
+    if(poeni > 0){
+
+        ui->answer3->setStyleSheet("background-color: green");
+    }
+
+    else{
+        ui->answer3->setStyleSheet("background-color: red");
+    }
+
+    ui->answer1->hide();
+    ui->answer2->hide();
+    ui->answer4->hide();
+}
+
+void Question_scene::on_answer4_clicked()
+{
+    int poeni = _question.checkAnswer(ui->answer4->text());
+
+    _player.setRoomCount(_player.roomCount() + poeni);
+    _player.setTotalCount(_player.totalCount() + poeni);
+
+    if(poeni > 0){
+
+        ui->answer4->setStyleSheet("background-color: green");
+    }
+
+    else{
+        ui->answer4->setStyleSheet("background-color: red");
+    }
+    ui->answer1->hide();
+    ui->answer2->hide();
+    ui->answer3->hide();
+}
+
+void Question_scene::on_inputButton_clicked()
+{
+
+}
+
+void Question_scene::showQuestionScene(){
+
+    Question_scene qs(_player);
+    this->hide();
+    qs.setModal(true);
+    qs.exec();
+}
+
+void Question_scene::showReportScene(){
+
+    Question_scene qs(_player);
+    this->hide();
+    qs.setModal(true);
+    qs.exec();
+}
