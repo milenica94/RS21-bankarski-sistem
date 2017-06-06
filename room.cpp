@@ -53,11 +53,11 @@ Room::Room(map<int,string> kategorija,int rbr_sobe)
     QString answer1, answer2, answer3, answer4;
 
     for(int j = 0; j < 3; j++){
-        random_device rd;
-        uniform_int_distribution<int> dist(0,3);
-        auto r = dist(rd);
+      //  random_device rd;
+      //  uniform_int_distribution<int> dist(0,3);
+      //  auto r = dist(rd);
 
-        int i = r%3 + 1;
+        int i = qrand()%3;
 
         naziv[j]=to_string(j+1)+kategorija[rbr_sobe]+to_string(i)+".txt";
         ifstream in("C:\\Users\\Natalija\\Desktop\\Fakultet\\IV godina\\Razvoj softvera\\projekat\\labirinthGUI3\\"+naziv[j],ifstream::in);
