@@ -17,11 +17,7 @@ Game::Game() {
     }
 
 Game::~Game()
-{
-
-    for(auto i=_rooms.begin();i!=_rooms.end();i++)
-        delete &i;
-}
+{}
 
 void Game::setPutanja() {
        random_device rd;
@@ -36,9 +32,4 @@ void Game::setPutanja() {
 vector<int> Game::getPutanja(){
 
     return _putanja;
-}
-
-vector<Room> Game::rooms(){
-
-    return _rooms;
 }
