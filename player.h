@@ -25,9 +25,7 @@ public:
     void setLevel(int level);
     void setRoomCount(int points);
     void setTotalCount(int points);
-
-    void choosePath(char& path) const;
-
+    
 private:
     QString _name;
     int _lives;
@@ -36,7 +34,5 @@ private:
     int _totalCount;
 
 };
-
-ostream & operator <<(ostream& out, const Player& player);
 
 #endif // PLAYER_H
