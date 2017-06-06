@@ -20,13 +20,13 @@ public:
 
     void setPutanja();
     vector<int> getPutanja();
-    vector<Room> rooms();
+   // vector<Room> rooms();
 
 private:
    Game (const Game &g);
    Game operator = (Game &g);
    vector<int> _putanja;
-   vector<Room> _rooms;
+  // vector<Room> _rooms;
 };
 
 #endif // GAME_H
