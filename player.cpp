@@ -75,17 +75,5 @@ void Player::setTotalCount(int points){
     _totalCount = points;
 }
 
-void Player::choosePath(char& path) const{
-
-    cout << "Izaberite kojom putanjom zelite ici. " << endl;
-    cout << "Unesite L za levo ili D za desno: " << endl;
-
-    cin >> path;
-
-    while(path != 'D' && path != 'L'){
-        cout << "Morate uneti L ili D! " << endl;
-        cin >> path;
-    }
-}
 
 
