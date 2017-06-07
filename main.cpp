@@ -1,11 +1,19 @@
-#include "mainwindow.h"
-#include <QApplication>
+#include <QCoreApplication>
+#include <string>
+#include <iostream>
+#include "client.h"
+#include "player.h"
+
+using namespace std;
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-
+    QCoreApplication a(argc, argv);
+    string name;
+    cout<<"Unesite ime: "<<endl;
+    cin>>name;
+    Player* player=new Player(name);
+    client mTest;
+    mTest.Test(player);
     return a.exec();
 }
