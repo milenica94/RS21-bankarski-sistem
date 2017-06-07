@@ -8,9 +8,14 @@
 #include <QPixmap>
 #include <QPalette>
 #include <QDebug>
+#include <QTime>
 
-#include <unistd.h>
-
+void delay(int n)           // n je broj sekundi
+{
+    QTime dieTime= QTime::currentTime().addSecs(n);
+    while (QTime::currentTime() < dieTime)
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+}
 
 Rebus_scene::Rebus_scene(Player& player, vector<Rebus*> questions, int rbrSobe, int rbrPitanja, vector<int> path, QWidget *parent) :
     QDialog(parent),
@@ -62,7 +67,7 @@ void Rebus_scene::on_inputButton_clicked()
     poeni = _rebus.checkAnswer(ui->rebusAnswer->text());
 
     if(poeni > 0){
-        sleep(1);
+        delay(0.5);
         ui->rebusAnswer->setStyleSheet("background-color: rgb(80, 231, 118)");
 
         _player.setRoomCount(_player.roomCount() + poeni);
@@ -72,6 +77,7 @@ void Rebus_scene::on_inputButton_clicked()
         ui->rebusAnswer->setStyleSheet("background-color: red");
         ui->question->setText("Tacan odgovor je \n" + _rebus.correctAnswer());
     }
+    delay(1);
     emit next();
 }
 
