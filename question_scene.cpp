@@ -8,8 +8,9 @@
 #include <QPixmap>
 #include <QPalette>
 #include <QDebug>
-#include <unistd.h>
+#include <QTime>
 
+void delay(int n);    
 
 Question_scene::Question_scene(Player& player, vector<QuestionABCD*> questions, int rbrSobe, int rbrPitanja, vector<int> path, QWidget *parent) :
     QDialog(parent),
@@ -73,7 +74,7 @@ void Question_scene::on_answer1_clicked()
     int poeni = _question.checkAnswer(ui->answer1->text());
 
     if(poeni > 0){
-        sleep(1);
+        delay(0.5);
         ui->answer1->setStyleSheet("background-color: rgb(80, 231, 118)");
         _player.setRoomCount(_player.roomCount() + poeni);
         _player.setTotalCount(_player.totalCount() + poeni);
@@ -81,7 +82,6 @@ void Question_scene::on_answer1_clicked()
 
     else if(poeni == 0){
         ui->answer1->setStyleSheet("background-color: red");
-        sleep(1);
         if(ui->answer2->text().compare(_question.correctAnswer()))
             ui->answer2->setStyleSheet("background-color: rgb(80, 231, 118)");
         else if(ui->answer3->text().compare(_question.correctAnswer()))
@@ -89,9 +89,7 @@ void Question_scene::on_answer1_clicked()
         else if(ui->answer4->text().compare(_question.correctAnswer()))
             ui->answer4->setStyleSheet("background-color: rgb(80, 231, 118)");
     }
-
-
-
+    delay(1);
     emit next();
 }
 
@@ -101,7 +99,7 @@ void Question_scene::on_answer2_clicked()
     int poeni = _question.checkAnswer(ui->answer2->text());
 
     if(poeni > 0){
-        sleep(1);
+        delay(0.5);
         ui->answer2->setStyleSheet("background-color: rgb(80, 231, 118)");
         _player.setRoomCount(_player.roomCount() + poeni);
         _player.setTotalCount(_player.totalCount() + poeni);
@@ -109,7 +107,6 @@ void Question_scene::on_answer2_clicked()
 
     else if(poeni == 0){
         ui->answer2->setStyleSheet("background-color: red");
-        sleep(1);
         if(ui->answer1->text().compare(_question.correctAnswer()))
             ui->answer1->setStyleSheet("background-color: rgb(80, 231, 118)");
         else if(ui->answer3->text().compare(_question.correctAnswer()))
@@ -117,7 +114,7 @@ void Question_scene::on_answer2_clicked()
         else if(ui->answer4->text().compare(_question.correctAnswer()))
             ui->answer4->setStyleSheet("background-color: rgb(80, 231, 118)");
     }
-
+    delay(1);
     emit next();
 }
 
@@ -126,7 +123,7 @@ void Question_scene::on_answer3_clicked()
     int poeni = _question.checkAnswer(ui->answer3->text());
 
     if(poeni > 0){
-        sleep(1);
+        delay(0.5);
         ui->answer3->setStyleSheet("background-color: rgb(80, 231, 118)");
         _player.setRoomCount(_player.roomCount() + poeni);
         _player.setTotalCount(_player.totalCount() + poeni);
@@ -134,7 +131,6 @@ void Question_scene::on_answer3_clicked()
 
     else if(poeni == 0){
         ui->answer3->setStyleSheet("background-color: red");
-        sleep(1);
         if(ui->answer1->text().compare(_question.correctAnswer()))
             ui->answer1->setStyleSheet("background-color: rgb(80, 231, 118)");
         else if(ui->answer2->text().compare(_question.correctAnswer()))
@@ -142,7 +138,7 @@ void Question_scene::on_answer3_clicked()
         else if(ui->answer4->text().compare(_question.correctAnswer()))
             ui->answer4->setStyleSheet("background-color: rgb(80, 231, 118)");
     }
-
+    delay(1);
     emit next();
 
 }
@@ -152,7 +148,7 @@ void Question_scene::on_answer4_clicked()
     int poeni = _question.checkAnswer(ui->answer4->text());
 
     if(poeni > 0){
-        sleep(1);
+        delay(0.5);
         ui->answer4->setStyleSheet("background-color: rgb(80, 231, 118)");
         _player.setRoomCount(_player.roomCount() + poeni);
         _player.setTotalCount(_player.totalCount() + poeni);
@@ -160,7 +156,6 @@ void Question_scene::on_answer4_clicked()
 
     else if(poeni == 0){
         ui->answer4->setStyleSheet("background-color: red");
-        sleep(1);
         if(ui->answer1->text().compare(_question.correctAnswer()))
             ui->answer1->setStyleSheet("background-color: rgb(80, 231, 118)");
         else if(ui->answer2->text().compare(_question.correctAnswer()))
@@ -168,7 +163,7 @@ void Question_scene::on_answer4_clicked()
         else if(ui->answer3->text().compare(_question.correctAnswer()))
             ui->answer3->setStyleSheet("background-color: rgb(80, 231, 118)");
     }
-
+    delay(1);
     emit next();
 }
 
