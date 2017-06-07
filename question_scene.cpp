@@ -82,11 +82,11 @@ void Question_scene::on_answer1_clicked()
 
     else if(poeni == 0){
         ui->answer1->setStyleSheet("background-color: red");
-        if(ui->answer2->text().compare(_question.correctAnswer()))
+        if(ui->answer2->text()[0] == _question.correctAnswer())
             ui->answer2->setStyleSheet("background-color: rgb(80, 231, 118)");
-        else if(ui->answer3->text().compare(_question.correctAnswer()))
+        else if(ui->answer3->text()[0] == _question.correctAnswer())
             ui->answer3->setStyleSheet("background-color: rgb(80, 231, 118)");
-        else if(ui->answer4->text().compare(_question.correctAnswer()))
+        else if(ui->answer4->text()[0] == _question.correctAnswer())
             ui->answer4->setStyleSheet("background-color: rgb(80, 231, 118)");
     }
     delay(1);
@@ -107,11 +107,11 @@ void Question_scene::on_answer2_clicked()
 
     else if(poeni == 0){
         ui->answer2->setStyleSheet("background-color: red");
-        if(ui->answer1->text().compare(_question.correctAnswer()))
+        if(ui->answer1->text()[0] == _question.correctAnswer())
             ui->answer1->setStyleSheet("background-color: rgb(80, 231, 118)");
-        else if(ui->answer3->text().compare(_question.correctAnswer()))
+        else if(ui->answer3->text()[0] == _question.correctAnswer())
             ui->answer3->setStyleSheet("background-color: rgb(80, 231, 118)");
-        else if(ui->answer4->text().compare(_question.correctAnswer()))
+        else if(ui->answer4->text()[0] == _question.correctAnswer())
             ui->answer4->setStyleSheet("background-color: rgb(80, 231, 118)");
     }
     delay(1);
@@ -131,11 +131,11 @@ void Question_scene::on_answer3_clicked()
 
     else if(poeni == 0){
         ui->answer3->setStyleSheet("background-color: red");
-        if(ui->answer1->text().compare(_question.correctAnswer()))
+        if(ui->answer1->text()[0] == _question.correctAnswer())
             ui->answer1->setStyleSheet("background-color: rgb(80, 231, 118)");
-        else if(ui->answer2->text().compare(_question.correctAnswer()))
+        else if(ui->answer2->text()[0] == _question.correctAnswer())
             ui->answer2->setStyleSheet("background-color: rgb(80, 231, 118)");
-        else if(ui->answer4->text().compare(_question.correctAnswer()))
+        else if(ui->answer4->text()[0] == _question.correctAnswer())
             ui->answer4->setStyleSheet("background-color: rgb(80, 231, 118)");
     }
     delay(1);
@@ -156,11 +156,11 @@ void Question_scene::on_answer4_clicked()
 
     else if(poeni == 0){
         ui->answer4->setStyleSheet("background-color: red");
-        if(ui->answer1->text().compare(_question.correctAnswer()))
+        if(ui->answer1->text()[0] == _question.correctAnswer())
             ui->answer1->setStyleSheet("background-color: rgb(80, 231, 118)");
-        else if(ui->answer2->text().compare(_question.correctAnswer()))
+        else if(ui->answer2->text()[0] == _question.correctAnswer())
             ui->answer2->setStyleSheet("background-color: rgb(80, 231, 118)");
-        else if(ui->answer3->text().compare(_question.correctAnswer()))
+        else if(ui->answer3->text()[0] == _question.correctAnswer())
             ui->answer3->setStyleSheet("background-color: rgb(80, 231, 118)");
     }
     delay(1);
